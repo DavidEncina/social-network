@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 
 /**
  * Write a description of class PhotoPost here.
@@ -7,27 +8,123 @@
  */
 public class PhotoPost
 {
-    // instance variables - replace the example below with your own
-    private int x;
+    // Almacena el nombre de usuario
+    private String username;
+    // Almacena un mensaje
+    private String filename;
+    // Almacena la descripcion
+    private String caption;
+    // Almacena  la cantidad de milisegundos trasncurridos entre el mometo en el que se crea el post y la medianoche del 1 de enero de 1970
+    private long timestamp;
+    // Almacena el numero de likes
+    private int likes;
+    // Almacena los comentarios en una lista
+    private ArrayList<String> comments;
 
     /**
-     * Constructor for objects of class PhotoPost
+     * Constructor for objects of class MessagePost
      */
-    public PhotoPost()
+    public PhotoPost(String author, String filename, String caption)
     {
-        // initialise instance variables
-        x = 0;
+        username = author;
+        this.filename = filename;
+        this.caption = caption;
+        timestamp = System.currentTimeMillis();
+        likes = 0;
+        comments = new ArrayList<>();
     }
-
+    
     /**
-     * An example of a method - replace this comment with your own
-     * 
-     * @param  y   a sample parameter for a method
-     * @return     the sum of x and y 
+     * Añade un "me gusta"
      */
-    public int sampleMethod(int y)
+    public void like()
     {
-        // put your code here
-        return x + y;
+        likes++;
+    }
+    
+    /**
+     * Quita un like
+     */
+    public void unlike()
+    {
+        if (likes > 0) {
+            likes--;
+        }
+    }
+    
+    /**
+     * Añade un comentario
+     */
+    public void addComment(String text)
+    {
+        comments.add(text);
+    }
+    
+    /**
+     * Devuelve la imagen
+     */
+    public String getImageFile()
+    {
+        return filename;
+    }
+    
+    /**
+     * Devuelve la descripcion de la imagen
+     */
+    public String getCaption()
+    {
+        return caption;
+    }
+    
+    /**
+     * Devuelve el tiempo desde que se creo el post
+     */
+    public long getTimeStamp()
+    {
+        return timestamp;
+    }
+    
+    /**
+     * Mustra todas las caracteristicas de las entradas
+     */
+    public void display()
+    {         
+        System.out.println("Autor: " + username);
+        System.out.println("Nombre de foto: " + filename);
+        System.out.println("Descripcion de foto: " + caption);
+        System.out.println("Likes: " + likes);
+        System.out.println("Comentarios: " + likes);
+        
+        if (comments.size() == 0) {
+            System.out.println("    No hay comentarios");
+        }
+        else {
+            for (int i = 0; i < comments.size(); i++) {
+                System.out.println("    - " + comments.get(i));
+            }
+        }             
+        
+        System.out.println("Creado hace " + timeString(timestamp));        
+    }
+    
+    /**
+     * 
+     */
+    public String timeString(long time)
+    {
+        long principio = timestamp;
+        long fin = System.currentTimeMillis();;
+        long tiempoMilesimas;
+        float tiempoSegundos;
+        int tiempoMinutos = 0;
+        tiempoMilesimas = fin - principio;
+        tiempoSegundos = tiempoMilesimas / 1000.0f;
+        while (tiempoSegundos > 59) {
+            if (tiempoSegundos > 59) {
+                tiempoMinutos++;
+                tiempoSegundos = tiempoSegundos - 59;
+           }
+        }
+        return tiempoMinutos + " minutos y " + tiempoSegundos + " segundos";
     }
 }
