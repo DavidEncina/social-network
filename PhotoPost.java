@@ -93,7 +93,7 @@ public class PhotoPost
         System.out.println("Nombre de foto: " + filename);
         System.out.println("Descripcion de foto: " + caption);
         System.out.println("Likes: " + likes);
-        System.out.println("Comentarios: " + likes);
+        System.out.println("Comentarios: ");
         
         if (comments.size() == 0) {
             System.out.println("    No hay comentarios");

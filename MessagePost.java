@@ -81,7 +81,7 @@ public class MessagePost
         System.out.println("Autor: " + username);
         System.out.println("Mensaje: " + message);
         System.out.println("Likes: " + likes);
-        System.out.println("Comentarios: " + likes);
+        System.out.println("Comentarios: ");
         
         if (comments.size() == 0) {
             System.out.println("    No hay comentarios");
